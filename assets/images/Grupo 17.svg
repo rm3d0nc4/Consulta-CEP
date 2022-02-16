@@ -1,6 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="112" height="37" viewBox="0 0 112 37">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #cfcfcf;
+      }
+
+      .cls-1 {
+        font-size: 16px;
+        font-family: aansa;
+        letter-spacing: 0.02em;
+      }
+
+      .cls-2 {
+        font-size: 10px;
+        font-family: Roboto-Regular, Roboto;
+      }
+    </style>
+  </defs>
   <g id="Grupo_17" data-name="Grupo 17" transform="translate(-139 -777)">
-    <text id="Romero_Mendonca" data-name="Romero Mendonca" transform="translate(195 811)" fill="#cfcfcf" font-size="16" font-family="aansa" letter-spacing="0.02em"><tspan x="-55.24" y="0">Romero Mendonca</tspan></text>
-    <text id="designed_by" data-name="designed by" transform="translate(195 787)" fill="#cfcfcf" font-size="10" font-family="Roboto-Regular, Roboto"><tspan x="-26.675" y="0">designed by</tspan></text>
+    <text id="Romero_Mendonca" data-name="Romero Mendonca" class="cls-1" transform="translate(195 811)"><tspan x="-55.24" y="0">Romero Mendonca</tspan></text>
+    <text id="designed_by" data-name="designed by" class="cls-2" transform="translate(195 787)"><tspan x="-26.675" y="0">designed by</tspan></text>
   </g>
 </svg>
