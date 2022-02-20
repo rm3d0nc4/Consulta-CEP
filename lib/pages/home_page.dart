@@ -1,3 +1,4 @@
+import 'package:consulta_cep/widgets/options_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -19,9 +20,8 @@ class HomePage extends StatelessWidget {
           style: TextStyle(
               fontSize: 23, fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.more_vert_rounded)),
+        actions: const [
+          OptionsButton(),
         ],
       ),
       body: Column(
