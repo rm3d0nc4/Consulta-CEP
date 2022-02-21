@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'rich_text_result.dart';
 
-class FavoriteCepInfo extends StatelessWidget {
-  const FavoriteCepInfo({Key? key}) : super(key: key);
+class FavoriteCepInfoDialog extends StatelessWidget {
+  const FavoriteCepInfoDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

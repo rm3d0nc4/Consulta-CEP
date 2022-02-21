@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'rich_text_result.dart';
 
-class InsertedCepResult extends StatelessWidget {
-  const InsertedCepResult({Key? key}) : super(key: key);
+class InsertedCepResultDialog extends StatelessWidget {
+  const InsertedCepResultDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

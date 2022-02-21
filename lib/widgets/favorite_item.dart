@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'favorite_cep_info_dialog.dart';
+
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({Key? key}) : super(key: key);
 
@@ -11,11 +13,13 @@ class FavoriteItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            showInfo(context);
+          },
           style: ElevatedButton.styleFrom(
               primary: Color(0xFFFFFFFF),
               elevation: 3,
-              fixedSize: Size(width * .64, height * .066),
+              fixedSize: Size(width * .60, height * .066),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15))),
           child: Row(
@@ -65,6 +69,14 @@ class FavoriteItem extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void showInfo(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return FavoriteCepInfoDialog();
+        });
   }
 }
 // 390x844
