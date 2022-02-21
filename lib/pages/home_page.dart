@@ -1,3 +1,5 @@
+import 'package:consulta_cep/api/cep_api.dart';
+import 'package:consulta_cep/models/cep_model.dart';
 import 'package:consulta_cep/pages/favorites_page.dart';
 import 'package:consulta_cep/widgets/inserted_cep_result_dialog.dart';
 import 'package:consulta_cep/widgets/options_button.dart';
@@ -9,6 +11,7 @@ class HomePage extends StatelessWidget {
 
   final maskFormatter = MaskTextInputFormatter(mask: '#####-###');
   final TextEditingController _cepController = TextEditingController();
+  final CepApi cepApi = CepApi();
 
   @override
   Widget build(BuildContext context) {
@@ -101,8 +104,10 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
-                  showResult(context);
+                onPressed: () async {
+                  CepModel cepData = await cepApi.getDataWithCep('09820760');
+
+                  showResult(context, cepData);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -134,11 +139,13 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void showResult(BuildContext context) {
+  void showResult(BuildContext context, CepModel cepData) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return InsertedCepResultDialog();
+          return InsertedCepResultDialog(
+            cepData: cepData,
+          );
         });
   }
 }
