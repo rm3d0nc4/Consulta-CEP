@@ -1,8 +1,12 @@
 import 'package:consulta_cep/widgets/options_button.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+
+  final maskFormatter = MaskTextInputFormatter(mask: '#####-###');
+  final TextEditingController _cepController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +70,19 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   color: const Color(0xFFFFFFFF),
                 ),
-                child: const TextField(
+                child: TextField(
+                  controller: _cepController,
+                  inputFormatters: [maskFormatter],
                   keyboardType: TextInputType.number,
+                  style: const TextStyle(
+                      color: Color.fromARGB(239, 15, 15, 15),
+                      fontFamily: 'Poppins',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
                   textAlign: TextAlign.start,
                   textAlignVertical: TextAlignVertical.top,
-                  decoration: InputDecoration(
+                  cursorColor: const Color(0xFF1C85A8),
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: '00000-000',
                     hintStyle: TextStyle(
