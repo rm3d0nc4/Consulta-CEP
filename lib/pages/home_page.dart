@@ -1,5 +1,7 @@
 import 'package:consulta_cep/pages/favorites_page.dart';
+import 'package:consulta_cep/widgets/inserted_cep_result.dart';
 import 'package:consulta_cep/widgets/options_button.dart';
+import 'package:consulta_cep/widgets/rich_text_result.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -100,7 +102,9 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  showResult(context);
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   mainAxisSize: MainAxisSize.min,
@@ -129,5 +133,13 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void showResult(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return InsertedCepResult();
+        });
   }
 }
