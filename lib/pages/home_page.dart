@@ -1,3 +1,4 @@
+import 'package:consulta_cep/pages/favorites_page.dart';
 import 'package:consulta_cep/widgets/options_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -17,7 +18,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF1C85A8),
         leading: IconButton(
-            onPressed: () {}, icon: const Icon(Icons.favorite_rounded)),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: ((context) => const FavoritesPages())));
+            },
+            icon: const Icon(Icons.favorite_rounded)),
         centerTitle: true,
         title: const Text(
           'Consulta CEP',
@@ -71,6 +76,7 @@ class HomePage extends StatelessWidget {
                   color: const Color(0xFFFFFFFF),
                 ),
                 child: TextField(
+                  autofocus: true,
                   controller: _cepController,
                   inputFormatters: [maskFormatter],
                   keyboardType: TextInputType.number,
