@@ -6,7 +6,7 @@ class CepModel {
   final String? bairro;
   final String cidade;
   final String uf;
-  final int ddd;
+  final String ddd;
   CepModel({
     required this.cep,
     this.logradouro,
@@ -23,9 +23,9 @@ class CepModel {
       cep: map['cep'] ?? '',
       logradouro: map['logradouro'],
       bairro: map['bairro'],
-      cidade: map['cidade'] ?? '',
+      cidade: map['localidade'] ?? '',
       uf: map['uf'] ?? '',
-      ddd: map['ddd']?.toInt() ?? 0,
+      ddd: map['ddd'] ?? '',
     );
   }
 
