@@ -29,26 +29,11 @@ class InsertedCepResultDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RichTextResult(text1: 'UF: ', text2: cepData.uf),
-              RichTextResult(text1: 'Cidade: ', text2: cepData.cidade),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RichTextResult(text1: 'Logradouro: ', text2: cepData.logradouro),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              RichTextResult(text1: 'Bairro: ', text2: cepData.bairro),
-              RichTextResult(text1: 'DDD: ', text2: cepData.ddd),
-            ],
-          )
+          RichTextResult(text1: 'UF: ', text2: cepData.uf),
+          RichTextResult(text1: 'Cidade: ', text2: cepData.cidade),
+          RichTextResult(text1: 'Logradouro: ', text2: cepData.logradouro),
+          RichTextResult(text1: 'Bairro: ', text2: cepData.bairro),
+          RichTextResult(text1: 'DDD: ', text2: cepData.ddd),
         ],
       ),
       actionsAlignment: MainAxisAlignment.center,
