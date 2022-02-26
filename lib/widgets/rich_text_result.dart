@@ -13,7 +13,7 @@ class RichTextResult extends StatelessWidget {
         style: const TextStyle(
             color: Color(0xFF1C85A8),
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: 15,
             fontWeight: FontWeight.w600),
         children: [
           TextSpan(
@@ -21,7 +21,7 @@ class RichTextResult extends StatelessWidget {
             style: const TextStyle(
                 color: Color(0xFF212121),
                 fontFamily: 'Poppins',
-                fontSize: 16,
+                fontSize: 15,
                 fontWeight: FontWeight.w500),
           )
         ],
