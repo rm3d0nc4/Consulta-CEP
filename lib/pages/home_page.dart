@@ -1,16 +1,26 @@
 import 'package:consulta_cep/api/cep_api.dart';
 import 'package:consulta_cep/models/cep_model.dart';
 import 'package:consulta_cep/pages/favorites_page.dart';
+import 'package:consulta_cep/widgets/error_dialog.dart';
 import 'package:consulta_cep/widgets/inserted_cep_result_dialog.dart';
 import 'package:consulta_cep/widgets/options_button.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final maskFormatter = MaskTextInputFormatter(mask: '#####-###');
+
   final TextEditingController _cepController = TextEditingController();
+
+  final _textFormFieldKey = GlobalKey<FormState>();
+
   final CepApi cepApi = CepApi();
 
   @override
@@ -79,7 +89,8 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15),
                   color: const Color(0xFFFFFFFF),
                 ),
-                child: TextField(
+                child: TextFormField(
+                  key: _textFormFieldKey,
                   autofocus: true,
                   controller: _cepController,
                   inputFormatters: [maskFormatter],
@@ -101,13 +112,30 @@ class HomePage extends StatelessWidget {
                         fontSize: 18,
                         fontWeight: FontWeight.w500),
                   ),
+                  validator: (value) {
+                    if (value == null || value.contains(' ')) {
+                      return 'Preencha o campo';
+                    } else {
+                      return null;
+                    }
+                  },
                 ),
               ),
               ElevatedButton(
                 onPressed: () async {
-                  CepModel cepData = await cepApi.getDataWithCep('09820760');
+                  if (_textFormFieldKey.currentState!.validate()) {
+                    CepModel? cepData = await cepApi
+                        .getDataWithCep(_cepController.text)
+                        .catchError(
+                          (e) => showResult(
+                            context,
+                            const ErrorDialog(),
+                          ),
+                        );
 
-                  showResult(context, cepData);
+                    showResult(
+                        context, InsertedCepResultDialog(cepData: cepData!));
+                  }
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -139,13 +167,11 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void showResult(BuildContext context, CepModel cepData) {
+  void showResult(BuildContext context, Widget resultWidget) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return InsertedCepResultDialog(
-            cepData: cepData,
-          );
+          return resultWidget;
         });
   }
 }
