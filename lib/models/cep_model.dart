@@ -1,39 +1,44 @@
 import 'dart:convert';
 
-class CepModel {
-  final String cep;
-  final String? logradouro;
-  final String? bairro;
-  final String cidade;
-  final String uf;
-  final String ddd;
-  CepModel({
-    required this.cep,
-    this.logradouro,
-    this.bairro,
-    required this.cidade,
-    required this.uf,
-    required this.ddd,
-  });
+class Cep {
+  String? numero;
+  String? logradouro;
+  String? bairro;
+  String? localidade;
+  String? uf;
+  String? ddd;
+  String? erro;
 
-  // Generate Dataclass
+  Cep(this.numero, this.logradouro, this.bairro, this.localidade, this.uf,
+      this.ddd, this.erro);
 
-  factory CepModel.fromMap(Map<String, dynamic> map) {
-    return CepModel(
-      cep: map['cep'] ?? '',
-      logradouro: map['logradouro'],
-      bairro: map['bairro'],
-      cidade: map['localidade'] ?? '',
-      uf: map['uf'] ?? '',
-      ddd: map['ddd'] ?? '',
-    );
+  Cep.fromJson(Map<String, dynamic> json) {
+    numero = json['cep'] ?? '';
+    logradouro =
+        json['logradouro'] != '' ? json['logradouro'] : '(não encontrado)';
+    bairro = json['bairro'] != '' ? json['bairro'] : '(não encontrado)';
+    localidade = json['localidade'] ?? '';
+    uf = json['uf'] ?? '';
+    ddd = json['ddd'] ?? '';
+    erro = json['erro'] ?? '';
   }
 
-  factory CepModel.fromJson(String source) =>
-      CepModel.fromMap(json.decode(source));
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> cep = {};
+
+    cep['numero'] = this.numero;
+    cep['logradouro'] = this.logradouro;
+    cep['bairro'] = this.bairro;
+    cep['localidade'] = this.localidade;
+    cep['uf'] = this.uf;
+    cep['ddd'] = this.ddd;
+    cep['erro'] = this.erro;
+
+    return cep;
+  }
 
   @override
   String toString() {
-    return 'CepModel(cep: $cep, logradouro: $logradouro, bairro: $bairro, cidade: $cidade, uf: $uf, ddd: $ddd)';
+    return 'Cep(cep: $numero, logradouro: $logradouro, bairro: $bairro, localidade: $localidade, uf: $uf, ddd: $ddd)';
   }
 }

@@ -8,6 +8,7 @@ class RichTextResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      // textAlign: TextAlign.center,
       text: TextSpan(
         text: text1,
         style: const TextStyle(

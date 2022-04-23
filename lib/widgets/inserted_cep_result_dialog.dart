@@ -5,11 +5,11 @@ import 'package:consulta_cep/models/cep_model.dart';
 import 'rich_text_result.dart';
 
 class InsertedCepResultDialog extends StatelessWidget {
-  final CepModel cepData;
+  final Cep cep;
 
   const InsertedCepResultDialog({
     Key? key,
-    required this.cepData,
+    required this.cep,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class InsertedCepResultDialog extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     return AlertDialog(
       title: Text(
-        cepData.cep,
+        cep.numero ?? '',
         textAlign: TextAlign.center,
         style: const TextStyle(
             color: Color(0xFF1C85A8),
@@ -28,12 +28,13 @@ class InsertedCepResultDialog extends StatelessWidget {
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          RichTextResult(text1: 'UF: ', text2: cepData.uf),
-          RichTextResult(text1: 'Cidade: ', text2: cepData.cidade),
-          RichTextResult(text1: 'Logradouro: ', text2: cepData.logradouro),
-          RichTextResult(text1: 'Bairro: ', text2: cepData.bairro),
-          RichTextResult(text1: 'DDD: ', text2: cepData.ddd),
+          RichTextResult(text1: 'Logradouro: ', text2: cep.logradouro),
+          RichTextResult(text1: 'Bairro: ', text2: cep.bairro),
+          RichTextResult(text1: 'Cidade: ', text2: cep.localidade),
+          RichTextResult(text1: 'UF: ', text2: cep.uf),
+          RichTextResult(text1: 'DDD: ', text2: cep.ddd),
         ],
       ),
       actionsAlignment: MainAxisAlignment.center,
